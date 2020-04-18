@@ -666,10 +666,10 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  cloudProjectId: 
+  cloudProjectId: f65a8718-62dc-4d69-8e26-ad2c7bdbb75d
   framebufferDepthMemorylessMode: 0
-  projectName: 
-  organizationId: 
+  projectName: Separated-and-Thirsty
+  organizationId: angry-moth-studios
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
