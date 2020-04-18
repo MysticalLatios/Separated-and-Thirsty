@@ -7,8 +7,10 @@ using Mirror;
 	API Reference: https://mirror-networking.com/docs/api/Mirror.NetworkManager.html
 */
 
-public class NewNetworkManager : NetworkManager
+public class NetworkManagerSandT : NetworkManager
 {
+
+
     #region Unity Callbacks
 
     public override void OnValidate()
@@ -149,6 +151,10 @@ public class NewNetworkManager : NetworkManager
     /// <param name="conn">Connection from client.</param>
     public override void OnServerAddPlayer(NetworkConnection conn)
     {
+        if (numPlayers > 2)
+        {
+
+        }
         base.OnServerAddPlayer(conn);
     }
 
