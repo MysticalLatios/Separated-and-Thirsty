@@ -237,9 +237,6 @@ GameObject:
   - component: {fileID: 7456351933689772746}
   - component: {fileID: 6145424324849943065}
   - component: {fileID: 8235436015832917034}
-  - component: {fileID: 3967225047362683921}
-  - component: {fileID: 7011016252477409123}
-  - component: {fileID: 4824234534562018117}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -408,56 +405,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &3967225047362683921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4477792713896045621}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1e31581c2165d346aebc447901f6fa8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  source: {fileID: 0}
-  pushToTalkKey: 109
---- !u!114 &7011016252477409123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4477792713896045621}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneId: 0
-  serverOnly: 0
-  m_AssetId: 
---- !u!114 &4824234534562018117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4477792713896045621}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 734b48bea0b204338958ee3d885e11f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  clientAuthority: 0
-  localPositionSensitivity: 0.01
-  localRotationSensitivity: 0.01
-  localScaleSensitivity: 0.01
-  target: {fileID: 0}
 --- !u!1 &5704937753363261478
 GameObject:
   m_ObjectHideFlags: 0
@@ -871,6 +818,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 467d265b934d16149916c4f9f4664c15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   playerCamera: {fileID: 7456351933689772746}
   followoffset: {x: 0, y: 1.8, z: 13}
   followspeed: 10
