@@ -3,17 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum RadioDistance
-{
-    VERYFAR,
-    FAR,
-    CLOSE,
-    VERYCLOSE
- 
-}
-
 [RequireComponent (typeof(AudioSource))]
-public class AudioController : MonoBehaviour
+public class VOIP : MonoBehaviour
 {
  
     //Audio source with serialized field for networking
@@ -96,4 +87,13 @@ public class AudioController : MonoBehaviour
             source.clip = null;
         }
     }
+}
+
+public enum RadioDistance
+{
+    VERYFAR,
+    FAR,
+    CLOSE,
+    VERYCLOSE
+ 
 }
