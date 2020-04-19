@@ -158,6 +158,7 @@ public class NetworkManagerSandT : NetworkManager
     public override void OnServerAddPlayer(NetworkConnection conn)
     {
         base.OnServerAddPlayer(conn);
+        Debug.Log(conn.ToString() + " Conected: " + conn.address);
     }
 
     /// <summary>
@@ -168,6 +169,7 @@ public class NetworkManagerSandT : NetworkManager
     /// <param name="player">The player identity to remove.</param>
     public override void OnServerRemovePlayer(NetworkConnection conn, NetworkIdentity player)
     {
+        Debug.Log(player.ToString() + " Is disconectiong");
         base.OnServerRemovePlayer(conn, player);
     }
 
@@ -176,7 +178,10 @@ public class NetworkManagerSandT : NetworkManager
     /// </summary>
     /// <param name="conn">Connection from client.</param>
     /// <param name="errorCode">Error code.</param>
-    public override void OnServerError(NetworkConnection conn, int errorCode) { }
+    public override void OnServerError(NetworkConnection conn, int errorCode) 
+    { 
+        Debug.Log("Network Error: " + errorCode);
+    }
 
     #endregion
 
