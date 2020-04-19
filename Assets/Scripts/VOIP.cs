@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent (typeof(AudioSource))]
-public class VOIP : MonoBehaviour
+public class VOIP : NetworkBehaviour
 {
  
     //Audio source with serialized field for networking
