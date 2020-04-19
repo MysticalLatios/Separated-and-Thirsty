@@ -19960,7 +19960,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9176132929279093233}
-  - component: {fileID: 28982404470502949}
   - component: {fileID: 4822080635987395199}
   m_Layer: 0
   m_Name: Dust Emitters
@@ -19987,28 +19986,6 @@ Transform:
   m_Father: {fileID: 2506455039317080474}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &28982404470502949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7774318929148496440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1f0b27d43236aa458807de5c4a3ec67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FrontLeft: {fileID: 0}
-  FrontRight: {fileID: 0}
-  BackLeft: {fileID: 0}
-  BackRight: {fileID: 0}
-  WheelFrontLeft: {fileID: 0}
-  WheelFrontRight: {fileID: 0}
-  WheelBackLeft: {fileID: 0}
-  WheelBackRight: {fileID: 0}
-  MaxEmittAngle: 0
-  EmittRate: 0
 --- !u!114 &4822080635987395199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20029,7 +20006,6 @@ MonoBehaviour:
   WheelFrontRight: {fileID: 4690482710563463091}
   WheelBackLeft: {fileID: 3739021661777554710}
   WheelBackRight: {fileID: 8818829694558571674}
-  MaxEmittAngle: 0
   EmittRate: 1
 --- !u!1 &8043666763353503009
 GameObject:
