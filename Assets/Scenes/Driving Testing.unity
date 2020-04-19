@@ -232,6 +232,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  seedX: 0
+  seedZ: 0
   maxHight: 60
   quality: 2
 --- !u!114 &4463184
@@ -247,7 +249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 1932295894
-  serverOnly: 1
+  serverOnly: 0
   m_AssetId: 
 --- !u!114 &4463185
 MonoBehaviour:
