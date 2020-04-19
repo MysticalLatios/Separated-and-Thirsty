@@ -73,6 +73,10 @@ public class CarController : NetworkBehaviour
 
         trans_in.position = OriginPos;
         trans_in.rotation = OriginQuat;
+
+        //fix wheel being 90 degress of
+
+        trans_in.rotation *= Quaternion.Euler(0, 0, 90);
     }
 
     // Fixed update for physics
