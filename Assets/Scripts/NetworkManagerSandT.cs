@@ -9,7 +9,7 @@ using Mirror;
 
 public class NetworkManagerSandT : NetworkManager
 {
-
+    public MapGenerator mapGen;
 
     #region Unity Callbacks
 
@@ -134,6 +134,9 @@ public class NetworkManagerSandT : NetworkManager
         base.OnServerReady(conn);
     }
 
+
+
+     
     /// <summary>
     /// Called on the server when a client disconnects.
     /// <para>This is called on the Server when a Client disconnects from the Server. Use an override to decide what should happen when a disconnection is detected.</para>
@@ -188,6 +191,7 @@ public class NetworkManagerSandT : NetworkManager
     public override void OnClientConnect(NetworkConnection conn)
     {
         base.OnClientConnect(conn);
+
     }
 
     /// <summary>
@@ -226,7 +230,10 @@ public class NetworkManagerSandT : NetworkManager
     /// This is invoked when a host is started.
     /// <para>StartHost has multiple signatures, but they all cause this hook to be called.</para>
     /// </summary>
-    public override void OnStartHost() { }
+    public override void OnStartHost() 
+    {
+            mapGen.randomizeSeed();
+    }
 
     /// <summary>
     /// This is invoked when a server is started - including when a host is started.

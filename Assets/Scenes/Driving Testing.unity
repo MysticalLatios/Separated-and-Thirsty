@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 4463179}
   - component: {fileID: 4463183}
   - component: {fileID: 4463184}
+  - component: {fileID: 4463185}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -249,6 +250,24 @@ MonoBehaviour:
   sceneId: 1932295894
   serverOnly: 1
   m_AssetId: 
+--- !u!114 &4463185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4463178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 0
+  localPositionSensitivity: 0.01
+  localRotationSensitivity: 0.01
+  localScaleSensitivity: 0.01
 --- !u!1 &578308717
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,6 +373,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1112010780237382636, guid: 56949496d502de743b19f39661083782,
         type: 3}
+    - target: {fileID: 6330918410240487668, guid: f404c6e9f3e409e40b58a28ebf5628bb,
+        type: 3}
+      propertyPath: mapGen
+      value: 
+      objectReference: {fileID: 4463183}
     - target: {fileID: 6330918410240487669, guid: f404c6e9f3e409e40b58a28ebf5628bb,
         type: 3}
       propertyPath: m_Name

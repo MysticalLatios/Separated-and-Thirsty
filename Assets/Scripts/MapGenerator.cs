@@ -5,15 +5,25 @@ using Mirror;
 
 public class MapGenerator : NetworkBehaviour
 {
-    public Mesh plane;
+    private Mesh plane;
     private MeshCollider myCollider;
+    [SyncVar]
+    int seedX;
+    [SyncVar]
+    int seedZ;
     public float maxHight,quality;
 
+
+    void Awake()
+    {
+    }
+    
     // Start is called before the first frame update
     void Start()
     {
-        plane = GetComponent<MeshFilter>().mesh;
-        myCollider = GetComponent<MeshCollider>();
+        this.plane = this.GetComponent<MeshFilter>().mesh;
+        Debug.Log("added plane");
+        this.myCollider = GetComponent<MeshCollider>();
         generatePerlinHill();
     }
 
@@ -23,13 +33,17 @@ public class MapGenerator : NetworkBehaviour
         
     }
 
-   
+    public void randomizeSeed()
+    {
+        seedX = Random.Range(0, 1000);
+        seedZ = Random.Range(0, 1000);
+    }
 
-    void generatePerlinHill()
+
+    public void generatePerlinHill()
     {
         Vector3[] vertices = plane.vertices;
-        int seedX = Random.Range(0, 1000);
-        int seedZ = Random.Range(0, 1000);
+      
 
         for (int i = 0; i< vertices.Length; i++)
         {
@@ -47,6 +61,7 @@ public class MapGenerator : NetworkBehaviour
         myCollider.sharedMesh = plane;
     }
 }
+
 
 
 

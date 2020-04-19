@@ -17,6 +17,7 @@ public class CamraController : NetworkBehaviour
 
     public void LookAtPlayer()
     {
+    
         //This is jank I have no idea if this will work
         Vector3 DirectionToPlayer = carTransform.position - cameraTransform.position;
         Quaternion DirectionDetla = Quaternion.LookRotation(DirectionToPlayer, Vector3.up);
