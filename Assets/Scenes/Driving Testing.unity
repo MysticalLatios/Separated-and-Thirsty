@@ -233,8 +233,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   seeds: {x: 0, y: 0}
-  SpawnCarOne: {x: 0, y: 0, z: 0}
-  SpawnCarTwo: {x: 0, y: 0, z: 0}
+  SpawnCarOne: 0
+  SpawnCarTwo: 0
   CarSpawn: {fileID: 45487638}
   Car2Spawn: {fileID: 1982526013}
   maxHight: 120

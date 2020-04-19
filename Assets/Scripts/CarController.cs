@@ -13,6 +13,8 @@ public class CarController : NetworkBehaviour
     private float DirectionAngle; //where the car is curently pointing
     private float CurentTorque; //What the motor is outputing to the wheels
 
+    private bool flip;
+
     //Wheel colliders
     public WheelCollider FrontLeftWheel, FrontRightWheel;
     public WheelCollider BackLeftWheel, BackRightWheel;
@@ -28,7 +30,11 @@ public class CarController : NetworkBehaviour
     public void GetPlayerInput()
     {
         LRInput = Input.GetAxis("Horizontal");   
-        FBInput = Input.GetAxis("Vertical");   
+        FBInput = Input.GetAxis("Vertical");  
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            flip = true;
+        } 
     }
 
     public void UpdateTurn()
@@ -85,7 +91,18 @@ public class CarController : NetworkBehaviour
             UpdateTurn();
             UpdateMotor();
             UpdateWheels();
+            if (transform.position.y < -80f)
+            {
+                transform.position = new Vector3 (0f,5f, 0f);
+                transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            }
+            if (flip)
+            {
+                flip = false;
+                transform.SetPositionAndRotation(transform.position + new Vector3(0f,2f,0f), Quaternion.identity);
+            }
         }
+
     }
 
     void Start()
