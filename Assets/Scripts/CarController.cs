@@ -57,7 +57,7 @@ public class CarController : NetworkBehaviour
         UpdateWheel(FrontRightWheel, FrontRightTrans);
         UpdateWheel(FrontLeftWheel, FrontLeftTrans);
         UpdateWheel(BackRightWheel, BackRightTrans);
-        UpdateWheel(BackRightWheel, BackRightTrans);
+        UpdateWheel(BackLeftWheel, BackLeftTrans);
     }
 
     private void UpdateWheel(WheelCollider collider_in, Transform trans_in)
