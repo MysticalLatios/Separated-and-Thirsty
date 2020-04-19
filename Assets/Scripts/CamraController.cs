@@ -28,7 +28,7 @@ public class CamraController : MonoBehaviour
     {
         Vector3 PlayerPosition = carTransform.position + carTransform.forward * followoffset.z + carTransform.right * followoffset.x + carTransform.up * followoffset.y;
 
-        cameraTransform.position = Vector3.Lerp(cameraTransform.position, carTransform.position, followspeed * Time.deltaTime);
+        cameraTransform.position = Vector3.Lerp(cameraTransform.position, PlayerPosition, followspeed * Time.deltaTime);
     }
 
     // Start is called before the first frame update

@@ -834,7 +834,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 7456351933689772746}
-  followoffset: {x: 3, y: 6, z: -8}
+  followoffset: {x: 0, y: 3, z: -4}
   followspeed: 10
   lookspeed: 20
 --- !u!54 &2659657407579204020
