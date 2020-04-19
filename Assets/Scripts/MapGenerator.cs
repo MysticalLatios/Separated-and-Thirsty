@@ -16,7 +16,6 @@ public class MapGenerator : NetworkBehaviour
     {
         seeds = newValue;
         Debug.Log("genmap running");
-        generatePerlinHill();
     }
 
     public float maxHight,quality;
@@ -32,8 +31,14 @@ public class MapGenerator : NetworkBehaviour
         this.plane = this.GetComponent<MeshFilter>().mesh;
         Debug.Log("added plane");
         this.myCollider = GetComponent<MeshCollider>();
+        generatePerlinHill();
     }
 
+
+    public override void OnStartServer()
+    {
+        randomizeSeed();
+    } 
 
     public void initColiders()
     {

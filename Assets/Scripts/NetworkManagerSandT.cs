@@ -231,11 +231,11 @@ public class NetworkManagerSandT : NetworkManager
     /// </summary>
     public override void OnStartHost() 
     {
-        mapGen.initColiders();
+        /*mapGen.initColiders();
         mapGen.randomizeSeed();
         mapGen.generatePerlinHill();
         Debug.Log("seed x : " + mapGen.seeds.x + ",  y : " + mapGen.seeds.y);
-
+*/
     }
 
     /// <summary>
