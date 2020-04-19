@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class CamraController : MonoBehaviour
 {
-    Player currentPlayer;
+    CarController currentPlayer;
 
     // Start is called before the first frame update
     void Start()
     {
-        currentPlayer = transform.parent.GetComponent<Player>();
+        currentPlayer = transform.parent.GetComponent<CarController>();
     }
 
     // Update is called once per frame
