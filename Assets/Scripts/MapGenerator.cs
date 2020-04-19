@@ -21,10 +21,18 @@ public class MapGenerator : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        /*this.plane = this.GetComponent<MeshFilter>().mesh;
+        Debug.Log("added plane");
+        this.myCollider = GetComponent<MeshCollider>();
+        generatePerlinHill();*/
+    }
+
+
+    public void initColiders()
+    {
         this.plane = this.GetComponent<MeshFilter>().mesh;
         Debug.Log("added plane");
         this.myCollider = GetComponent<MeshCollider>();
-        generatePerlinHill();
     }
 
     // Update is called once per frame

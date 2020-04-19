@@ -122,7 +122,14 @@ public class NetworkManagerSandT : NetworkManager
     /// <para>Unity calls this on the Server when a Client connects to the Server. Use an override to tell the NetworkManager what to do when a client connects to the server.</para>
     /// </summary>
     /// <param name="conn">Connection from client.</param>
-    public override void OnServerConnect(NetworkConnection conn) { }
+    public override void OnServerConnect(NetworkConnection conn) 
+    { 
+        if (this.GetComponent<NetworkIdentity>().isClient)
+        {
+                mapGen.initColiders();
+                mapGen.generatePerlinHill();
+        }
+    }
 
     /// <summary>
     /// Called on the server when a client is ready.
@@ -232,7 +239,9 @@ public class NetworkManagerSandT : NetworkManager
     /// </summary>
     public override void OnStartHost() 
     {
-            mapGen.randomizeSeed();
+        mapGen.initColiders();
+        mapGen.randomizeSeed();
+        mapGen.generatePerlinHill();
     }
 
     /// <summary>
