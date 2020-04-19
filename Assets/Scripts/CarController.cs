@@ -28,8 +28,8 @@ public class CarController : NetworkBehaviour
     [Client]
     public void GetPlayerInput()
     {
-            LRInput = Input.GetAxis("Horizontal");   
-            FBInput = Input.GetAxis("Vertical");   
+        LRInput = Input.GetAxis("Horizontal");   
+        FBInput = Input.GetAxis("Vertical");   
     }
 
     public void UpdateTurn()
@@ -80,18 +80,20 @@ public class CarController : NetworkBehaviour
     // Fixed update for physics
     void FixedUpdate()
     {
-        if (!transform.parent.GetComponent<NetworkIdentity>().hasAuthority)
+        if (transform.parent.GetComponent<NetworkIdentity>().hasAuthority)
         { 
-            return;
+            GetPlayerInput();
+            UpdateTurn();
+            UpdateMotor();
+            UpdateWheels();
         }
-        GetPlayerInput();
-        UpdateTurn();
-        UpdateMotor();
-        UpdateWheels();
     }
 
     void Start()
     {
-
+        if (transform.parent.GetComponent<NetworkIdentity>().hasAuthority)
+        { 
+            Debug.Log("You have Authority over a car");
+        }
     }
 }
