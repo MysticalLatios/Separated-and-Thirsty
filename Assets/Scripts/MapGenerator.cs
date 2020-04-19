@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class MapGenerator : MonoBehaviour
+public class MapGenerator : NetworkBehaviour
 {
     public Mesh plane;
     private MeshCollider myCollider;
@@ -21,6 +22,8 @@ public class MapGenerator : MonoBehaviour
     {
         
     }
+
+   
 
     void generatePerlinHill()
     {

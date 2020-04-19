@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CamraController : MonoBehaviour
+public class CamraController : NetworkBehaviour
 {
     Transform carTransform;
     Transform cameraTransform;
@@ -40,8 +40,8 @@ public class CamraController : MonoBehaviour
         //disable the camera and audio for the server
         if (!transform.parent.GetComponent<NetworkIdentity>().isLocalPlayer)
         {
-            gameObject.GetComponent<Camera>().enabled = false;
-            gameObject.GetComponent<AudioListener>().enabled = false;
+            playerCamera.GetComponent<Camera>().enabled = false;
+            playerCamera.GetComponent<AudioListener>().enabled = false;
         }
     }
 
