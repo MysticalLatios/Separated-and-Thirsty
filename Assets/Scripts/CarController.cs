@@ -27,7 +27,7 @@ public class CarController : NetworkBehaviour
 
     public void GetPlayerInput()
     {
-        if (isLocalPlayer)
+        if (transform.parent.GetComponent<NetworkIdentity>().isLocalPlayer)
         {
             LRInput = Input.GetAxis("Horizontal");   
             FBInput = Input.GetAxis("Vertical");   
