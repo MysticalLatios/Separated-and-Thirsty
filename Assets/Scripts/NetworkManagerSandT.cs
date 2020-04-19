@@ -125,12 +125,6 @@ public class NetworkManagerSandT : NetworkManager
     public override void OnServerConnect(NetworkConnection conn) 
     { 
         
-        if (mapGen.isClientOnly)
-        {
-            mapGen.initColiders();
-            Debug.Log("seed x : " + mapGen.seedX + ",  y : " + mapGen.seedZ);
-            mapGen.generatePerlinHill();
-        }
     }
 
     /// <summary>
@@ -163,9 +157,11 @@ public class NetworkManagerSandT : NetworkManager
     /// <param name="conn">Connection from client.</param>
     public override void OnServerAddPlayer(NetworkConnection conn)
     {
-        if (numPlayers > 2)
+        if (!mapGen.isServer)
         {
-
+            mapGen.initColiders();
+            Debug.Log("seed x : " + mapGen.seedX + ",  y : " + mapGen.seedZ);
+            mapGen.generatePerlinHill();
         }
         base.OnServerAddPlayer(conn);
     }
