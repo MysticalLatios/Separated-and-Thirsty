@@ -86,7 +86,7 @@ MonoBehaviour:
   localPositionSensitivity: 0.01
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
-  target: {fileID: 0}
+  target: {fileID: 2506455039317080474}
 --- !u!1 &1550181588787548479
 GameObject:
   m_ObjectHideFlags: 0
