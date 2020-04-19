@@ -40,10 +40,11 @@ public class TireDustKickup : MonoBehaviour
         //Get new values for the wheels from the world, wtf c sharp why do it like this
         collider_in.GetWorldPose(out OriginPos, out OriginQuat);
 
-        trans_in.position = OriginPos;
-        trans_in.rotation = OriginQuat;
+        Quaternion oneAxisRotation = trans_in.rotation;
+        oneAxisRotation.eulerAngles = new Vector3(0, 0, 90);
+        //OriginQuat.eulerAngles.x
 
-        //TODO, stop it from rotating
+        trans_in.rotation = oneAxisRotation;
 
     }
 
