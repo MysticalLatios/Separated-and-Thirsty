@@ -41,7 +41,7 @@ public class CamraController : NetworkBehaviour
         if (!transform.parent.GetComponent<NetworkIdentity>().isLocalPlayer)
         {
             playerCamera.GetComponent<Camera>().enabled = false;
-            gameObject.GetComponent<AudioListener>().enabled = false;
+            playerCamera.GetComponent<AudioListener>().enabled = false;
         }
     }
 
