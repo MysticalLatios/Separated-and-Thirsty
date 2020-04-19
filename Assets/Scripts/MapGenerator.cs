@@ -12,13 +12,24 @@ public class MapGenerator : NetworkBehaviour
     [SyncVar(hook = nameof(genMap))]
     public Vector2 seeds;
 
+
+    [SyncVar]
+    public int SpawnCarOne;
+    [SyncVar]
+    public int SpawnCarTwo;
+
+    public Transform CarSpawn;
+    public Transform Car2Spawn;
+
+    
+
     private void genMap(UnityEngine.Vector2 oldValue, UnityEngine.Vector2 newValue)
     {
         seeds = newValue;
         Debug.Log("genmap running");
     }
 
-    public float maxHight,quality;
+    public float maxHight,quality,xMod,yMod;
 
 
     void Awake()
@@ -38,7 +49,9 @@ public class MapGenerator : NetworkBehaviour
 
     public override void OnStartServer()
     {
+        initColiders();
         randomizeSeed();
+        randomizeSpawnSeeds();
     } 
 
     public void initColiders()
@@ -57,10 +70,18 @@ public class MapGenerator : NetworkBehaviour
     public void randomizeSeed()
     {
         seeds = new Vector2(UnityEngine.Random.Range(0, 1000), UnityEngine.Random.Range(0, 1000));
-        
+    }
+
+    public void randomizeSpawnSeeds()
+    {
+        SpawnCarTwo = UnityEngine.Random.Range(0,plane.vertices.Length);
+        SpawnCarOne = UnityEngine.Random.Range(0,plane.vertices.Length);
+        Debug.Log(SpawnCarOne);
     }
 
 
+
+    // actually make   
     public void generatePerlinHill()
     {
         Vector3[] vertices = plane.vertices;
@@ -72,9 +93,14 @@ public class MapGenerator : NetworkBehaviour
             float pz = (transform.position.z + vertices[i].z) / quality;
 
             vertices[i].y = Mathf.PerlinNoise(px + seeds.x, pz + seeds.y) * maxHight - maxHight / 2;
-            vertices[i].x *= 50;
-            vertices[i].z *= 50;
+            vertices[i].x *= xMod;
+            vertices[i].z *= yMod;
         }
+
+        
+        CarSpawn.position = new Vector3(0f,3f,0f) + vertices[SpawnCarOne];
+        Car2Spawn.position = new Vector3(0f,3f,0f) + vertices[SpawnCarTwo];
+
 
         plane.vertices = vertices;
         plane.RecalculateBounds();
