@@ -31,6 +31,7 @@ public class MapGenerator : NetworkBehaviour
         this.plane = this.GetComponent<MeshFilter>().mesh;
         Debug.Log("added plane");
         this.myCollider = GetComponent<MeshCollider>();
+        Debug.Log("seed x : " + mapGen.seeds.x + ",  y : " + mapGen.seeds.y);
         generatePerlinHill();
     }
 
