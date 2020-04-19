@@ -124,10 +124,11 @@ public class NetworkManagerSandT : NetworkManager
     /// <param name="conn">Connection from client.</param>
     public override void OnServerConnect(NetworkConnection conn) 
     { 
-        if (this.GetComponent<NetworkIdentity>().isClient)
+        
+        if (mapGen.isClientOnly)
         {
-                mapGen.initColiders();
-                mapGen.generatePerlinHill();
+            mapGen.initColiders();
+            mapGen.generatePerlinHill();
         }
     }
 
