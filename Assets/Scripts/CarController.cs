@@ -25,7 +25,6 @@ public class CarController : NetworkBehaviour
     public float maxTurnAngle;
     public float maxMotorForce;
 
-    [Client]
     public void GetPlayerInput()
     {
         LRInput = Input.GetAxis("Horizontal");   
