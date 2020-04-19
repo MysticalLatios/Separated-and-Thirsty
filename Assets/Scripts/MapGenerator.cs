@@ -2,15 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using System;
 
 public class MapGenerator : NetworkBehaviour
 {
     private Mesh plane;
     private MeshCollider myCollider;
-    [SyncVar]
-    public int seedX;
-    [SyncVar]
-    public int seedZ;
+
+    [SyncVar(hook = nameof(genMap))]
+    public Vector2 seeds;
+
+    private void genMap(UnityEngine.Vector2 oldValue, UnityEngine.Vector2 newValue)
+    {
+        seeds = newValue;
+        Debug.Log("genmap running");
+        generatePerlinHill();
+    }
+
     public float maxHight,quality;
 
 
@@ -21,10 +29,9 @@ public class MapGenerator : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        /*this.plane = this.GetComponent<MeshFilter>().mesh;
+        this.plane = this.GetComponent<MeshFilter>().mesh;
         Debug.Log("added plane");
         this.myCollider = GetComponent<MeshCollider>();
-        generatePerlinHill();*/
     }
 
 
@@ -43,8 +50,8 @@ public class MapGenerator : NetworkBehaviour
 
     public void randomizeSeed()
     {
-        seedX = Random.Range(0, 1000);
-        seedZ = Random.Range(0, 1000);
+        seeds = new Vector2(UnityEngine.Random.Range(0, 1000), UnityEngine.Random.Range(0, 1000));
+        
     }
 
 
@@ -58,7 +65,7 @@ public class MapGenerator : NetworkBehaviour
             float px = (transform.position.x + vertices[i].x) / quality;
             float pz = (transform.position.z + vertices[i].z) / quality;
 
-            vertices[i].y = Mathf.PerlinNoise(px + seedX, pz + seedZ) * maxHight - maxHight / 2;
+            vertices[i].y = Mathf.PerlinNoise(px + seeds.x, pz + seeds.y) * maxHight - maxHight / 2;
             vertices[i].x *= 50;
             vertices[i].z *= 50;
         }
