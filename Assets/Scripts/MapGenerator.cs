@@ -8,9 +8,9 @@ public class MapGenerator : NetworkBehaviour
     private Mesh plane;
     private MeshCollider myCollider;
     [SyncVar]
-    int seedX;
+    public int seedX;
     [SyncVar]
-    int seedZ;
+    public int seedZ;
     public float maxHight,quality;
 
 

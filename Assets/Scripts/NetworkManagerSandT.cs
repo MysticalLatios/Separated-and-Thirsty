@@ -128,6 +128,7 @@ public class NetworkManagerSandT : NetworkManager
         if (mapGen.isClientOnly)
         {
             mapGen.initColiders();
+            Debug.Log("seed x : " + mapGen.seedX + ",  y : " + mapGen.seedZ);
             mapGen.generatePerlinHill();
         }
     }
@@ -243,6 +244,8 @@ public class NetworkManagerSandT : NetworkManager
         mapGen.initColiders();
         mapGen.randomizeSeed();
         mapGen.generatePerlinHill();
+        Debug.Log("seed x : " + mapGen.seedX + ",  y : " + mapGen.seedZ);
+
     }
 
     /// <summary>
