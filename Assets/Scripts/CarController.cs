@@ -44,7 +44,7 @@ public class CarController : NetworkBehaviour
     public void UpdateMotor()
     {
         //Update torque
-        CurentTorque = FBInput * maxMotorForce;
+        CurentTorque = FBInput * maxMotorForce * -1;
 
         FrontRightWheel.motorTorque = CurentTorque;
         FrontLeftWheel.motorTorque = CurentTorque;
