@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0.1
+  syncInterval: 0.01
   clientAuthority: 1
   localPositionSensitivity: 0.01
   localRotationSensitivity: 0.01
@@ -238,6 +238,8 @@ GameObject:
   - component: {fileID: 6145424324849943065}
   - component: {fileID: 8235436015832917034}
   - component: {fileID: 3967225047362683921}
+  - component: {fileID: 7011016252477409123}
+  - component: {fileID: 4824234534562018117}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -252,8 +254,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4477792713896045621}
-  m_LocalRotation: {x: 0, y: 0.9848078, z: -0.17364816, w: 0}
-  m_LocalPosition: {x: -0.0007, y: 0.0168, z: 0.0212}
+  m_LocalRotation: {x: -0, y: 0.9848078, z: -0.17364816, w: 0}
+  m_LocalPosition: {x: -0.0007, y: 0.0168, z: 0.021199996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2138885095136828665}
@@ -418,8 +420,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1e31581c2165d346aebc447901f6fa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   source: {fileID: 0}
   pushToTalkKey: 109
+--- !u!114 &7011016252477409123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4477792713896045621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  m_AssetId: 
+--- !u!114 &4824234534562018117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4477792713896045621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 734b48bea0b204338958ee3d885e11f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 0
+  localPositionSensitivity: 0.01
+  localRotationSensitivity: 0.01
+  localScaleSensitivity: 0.01
+  target: {fileID: 0}
 --- !u!1 &5704937753363261478
 GameObject:
   m_ObjectHideFlags: 0
@@ -836,7 +874,7 @@ MonoBehaviour:
   playerCamera: {fileID: 7456351933689772746}
   followoffset: {x: 0, y: 1.8, z: 13}
   followspeed: 10
-  lookspeed: 20
+  lookspeed: 10
 --- !u!54 &2659657407579204020
 Rigidbody:
   m_ObjectHideFlags: 0
