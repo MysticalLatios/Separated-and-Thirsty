@@ -25,6 +25,7 @@ public class CarController : NetworkBehaviour
     public float maxTurnAngle;
     public float maxMotorForce;
 
+    [Client]
     public void GetPlayerInput()
     {
         if (transform.parent.GetComponent<NetworkIdentity>().hasAuthority)
