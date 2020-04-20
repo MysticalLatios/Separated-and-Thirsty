@@ -12,6 +12,17 @@ public class MapGenerator : NetworkBehaviour
     [SyncVar(hook = nameof(genMap))]
     public Vector2 seeds;
 
+
+    [SyncVar]
+    public int SpawnCarOne;
+    [SyncVar]
+    public int SpawnCarTwo;
+
+    public Transform CarSpawn;
+    public Transform Car2Spawn;
+
+
+
     private void genMap(UnityEngine.Vector2 oldValue, UnityEngine.Vector2 newValue)
     {
         seeds = newValue;
@@ -24,7 +35,7 @@ public class MapGenerator : NetworkBehaviour
     void Awake()
     {
     }
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,8 +49,10 @@ public class MapGenerator : NetworkBehaviour
 
     public override void OnStartServer()
     {
+        initColiders();
         randomizeSeed();
-    } 
+        randomizeSpawnSeeds();
+    }
 
     public void initColiders()
     {
@@ -50,16 +63,24 @@ public class MapGenerator : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void randomizeSeed()
     {
         seeds = new Vector2(UnityEngine.Random.Range(0, 1000), UnityEngine.Random.Range(0, 1000));
-        
+    }
+
+    public void randomizeSpawnSeeds()
+    {
+        SpawnCarTwo = UnityEngine.Random.Range(0,plane.vertices.Length);
+        SpawnCarOne = UnityEngine.Random.Range(0,plane.vertices.Length);
+        Debug.Log(SpawnCarOne);
     }
 
 
+
+    // actually make
     public void generatePerlinHill()
     {
         Vector3[] plane = filter.mesh.vertices;
@@ -73,6 +94,9 @@ public class MapGenerator : NetworkBehaviour
             Vector3 vec = new Vector3(plane[i].x * mapLength, plane[i].y * mapWidth, perlinHeight);
             plane[i] = vec;
         }
+
+        CarSpawn.position = new Vector3(0f,3f,0f) + vertices[SpawnCarOne];
+        Car2Spawn.position = new Vector3(0f,3f,0f) + vertices[SpawnCarTwo];
 
         filter.mesh.vertices = plane;
         filter.mesh.RecalculateNormals();
@@ -113,7 +137,7 @@ public class MapGenerator : NetworkBehaviour
 //        // Update is called once per frame
 //        void Update()
 //        {
-//       
+//
 //        }
 //
 //        Mesh generatePerlinHill(Mesh plane, int offX, int offZ)
