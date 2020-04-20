@@ -17,7 +17,7 @@ public class thirstyPlayer : NetworkBehaviour
     private Rigidbody myBody;
 
     // movement speed;
-    float speed = 400;
+    float speed = 50000;
 
     // the UI eelement we use to represent the healbar
     public RectTransform healthBar;
@@ -42,39 +42,40 @@ public class thirstyPlayer : NetworkBehaviour
             // grab user input every frame
             xAxi = Input.GetAxis("Horizontal");
             zAxi = Input.GetAxis("Vertical");
-        }
+        
 
-        // drink if button pressed and water source near by
-        if (Input.GetKeyDown("e") && waterSource != null)
-        {
-
-            // add all of waterSource to user water amount
-            WaterLevel += waterSource.amountOfWater;
-
-            // if we have more then 100 round it down to 100 and calculate remaining water
-            if (WaterLevel > 100)
+            // drink if button pressed and water source near by
+            if (Input.GetKeyDown("e") && waterSource != null)
             {
-                float extraWater = WaterLevel - 100;
-                waterSource.amountOfWater = extraWater;
-                WaterLevel -= extraWater;
-            }
-            // Otherwise Destroy the water source and set waterSource to null
-            else
-            {
-                waterSource.amountOfWater = 0;
-                // TODO this may need to be replaced with despawn for online play.
-                Destroy(waterSource.gameObject);
-                waterSource = null;
+
+                // add all of waterSource to user water amount
+                WaterLevel += waterSource.amountOfWater;
+
+                // if we have more then 100 round it down to 100 and calculate remaining water
+                if (WaterLevel > 100)
+                {
+                    float extraWater = WaterLevel - 100;
+                    waterSource.amountOfWater = extraWater;
+                    WaterLevel -= extraWater;
+                }
+                // Otherwise Destroy the water source and set waterSource to null
+                else
+                {
+                    waterSource.amountOfWater = 0;
+                    // TODO this may need to be replaced with despawn for online play.
+                    Destroy(waterSource.gameObject);
+                    waterSource = null;
+                }
             }
         }
     }
 
 
-
     private void FixedUpdate()
     {
         // janky movement applied
-        myBody.AddForce(speed * xAxi, 0f, zAxi * speed);
+        myBody.AddForce(speed * transform.forward * zAxi + speed *transform.right * xAxi);
+        
 
         // Update the healthbar
         healthBar.anchorMax = new Vector2(WaterLevel / 100f, 0.5f);
