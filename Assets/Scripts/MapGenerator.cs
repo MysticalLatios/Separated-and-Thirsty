@@ -73,8 +73,8 @@ public class MapGenerator : NetworkBehaviour
 
     public void randomizeSpawnSeeds()
     {
-        SpawnCarTwo = UnityEngine.Random.Range(0,plane.vertices.Length);
-        SpawnCarOne = UnityEngine.Random.Range(0,plane.vertices.Length);
+        SpawnCarTwo = UnityEngine.Random.Range(0,filter.mesh.vertices.Length);
+        SpawnCarOne = UnityEngine.Random.Range(0,filter.mesh.vertices.Length);
         Debug.Log(SpawnCarOne);
     }
 
@@ -95,14 +95,25 @@ public class MapGenerator : NetworkBehaviour
             plane[i] = vec;
         }
 
-        CarSpawn.position = new Vector3(0f,3f,0f) + vertices[SpawnCarOne];
-        Car2Spawn.position = new Vector3(0f,3f,0f) + vertices[SpawnCarTwo];
+        CarSpawn.position = new Vector3(0f,3f,0f) + vecRot(plane[SpawnCarOne]);
+        Car2Spawn.position = new Vector3(0f,3f,0f) + vecRot(plane[SpawnCarTwo]);
 
         filter.mesh.vertices = plane;
         filter.mesh.RecalculateNormals();
         filter.mesh.RecalculateBounds();
         Debug.Log("Replacing mesh");
         myCollider.sharedMesh = filter.mesh;
+    }
+
+    Vector3 vecRot(Vector3 vec)
+    {
+        Vector3 end = new Vector3();
+
+        end.x = vec.x;
+        end.y = vec.z;
+        end.z = vec.y;
+
+        return end;
     }
 }
 
