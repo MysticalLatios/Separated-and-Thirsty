@@ -26,7 +26,6 @@ public class MapGenerator : NetworkBehaviour
     private void genMap(UnityEngine.Vector2 oldValue, UnityEngine.Vector2 newValue)
     {
         seeds = newValue;
-        Debug.Log("genmap running");
     }
 
     public float maxHight,quality,mapLength,mapWidth;
@@ -56,6 +55,7 @@ public class MapGenerator : NetworkBehaviour
 
     public void initColiders()
     {
+        filter = this.GetComponent<MeshFilter>();
         Debug.Log("added plane");
         this.myCollider = GetComponent<MeshCollider>();
     }
