@@ -6,8 +6,8 @@ using System;
 
 public class MapGenerator : NetworkBehaviour
 {
-    private Mesh plane;
     private MeshCollider myCollider;
+    private MeshFilter filter;
 
     [SyncVar(hook = nameof(genMap))]
     public Vector2 seeds;
@@ -21,7 +21,7 @@ public class MapGenerator : NetworkBehaviour
     public Transform CarSpawn;
     public Transform Car2Spawn;
 
-    
+
 
     private void genMap(UnityEngine.Vector2 oldValue, UnityEngine.Vector2 newValue)
     {
@@ -29,17 +29,17 @@ public class MapGenerator : NetworkBehaviour
         Debug.Log("genmap running");
     }
 
-    public float maxHight,quality,xMod,yMod;
+    public float maxHight,quality,mapLength,mapWidth;
 
 
     void Awake()
     {
     }
-    
+
     // Start is called before the first frame update
     void Start()
     {
-        this.plane = this.GetComponent<MeshFilter>().mesh;
+        filter = this.GetComponent<MeshFilter>();
         Debug.Log("added plane");
         this.myCollider = GetComponent<MeshCollider>();
         Debug.Log("seed x : " + seeds.x + ",  y : " + seeds.y);
@@ -52,11 +52,10 @@ public class MapGenerator : NetworkBehaviour
         initColiders();
         randomizeSeed();
         randomizeSpawnSeeds();
-    } 
+    }
 
     public void initColiders()
     {
-        this.plane = this.GetComponent<MeshFilter>().mesh;
         Debug.Log("added plane");
         this.myCollider = GetComponent<MeshCollider>();
     }
@@ -64,7 +63,7 @@ public class MapGenerator : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void randomizeSeed()
@@ -74,38 +73,47 @@ public class MapGenerator : NetworkBehaviour
 
     public void randomizeSpawnSeeds()
     {
-        SpawnCarTwo = UnityEngine.Random.Range(0,plane.vertices.Length);
-        SpawnCarOne = UnityEngine.Random.Range(0,plane.vertices.Length);
+        SpawnCarTwo = UnityEngine.Random.Range(0,filter.mesh.vertices.Length);
+        SpawnCarOne = UnityEngine.Random.Range(0,filter.mesh.vertices.Length);
         Debug.Log(SpawnCarOne);
     }
 
 
 
-    // actually make   
+    // actually make
     public void generatePerlinHill()
     {
-        Vector3[] vertices = plane.vertices;
-      
+        Vector3[] plane = filter.mesh.vertices;
 
-        for (int i = 0; i< vertices.Length; i++)
+        for (int i = 0; i< plane.Length; i++)
         {
-            float px = (transform.position.x + vertices[i].x) / quality;
-            float pz = (transform.position.z + vertices[i].z) / quality;
+            float px = (transform.position.x + plane[i].x) / quality;
+            float pz = (transform.position.z + plane[i].y) / quality;
 
-            vertices[i].y = Mathf.PerlinNoise(px + seeds.x, pz + seeds.y) * maxHight - maxHight / 2;
-            vertices[i].x *= xMod;
-            vertices[i].z *= yMod;
+            float perlinHeight = Mathf.PerlinNoise(px + seeds.x, pz + seeds.y) * maxHight - maxHight / 2;
+            Vector3 vec = new Vector3(plane[i].x * mapLength, plane[i].y * mapWidth, perlinHeight);
+            plane[i] = vec;
         }
 
-        
-        CarSpawn.position = new Vector3(0f,3f,0f) + vertices[SpawnCarOne];
-        Car2Spawn.position = new Vector3(0f,3f,0f) + vertices[SpawnCarTwo];
+        CarSpawn.position = new Vector3(0f,3f,0f) + vecRot(plane[SpawnCarOne]);
+        Car2Spawn.position = new Vector3(0f,3f,0f) + vecRot(plane[SpawnCarTwo]);
 
+        filter.mesh.vertices = plane;
+        filter.mesh.RecalculateNormals();
+        filter.mesh.RecalculateBounds();
+        Debug.Log("Replacing mesh");
+        myCollider.sharedMesh = filter.mesh;
+    }
 
-        plane.vertices = vertices;
-        plane.RecalculateBounds();
-        plane.RecalculateNormals();
-        myCollider.sharedMesh = plane;
+    Vector3 vecRot(Vector3 vec)
+    {
+        Vector3 end = new Vector3();
+
+        end.x = vec.x;
+        end.y = vec.z;
+        end.z = vec.y;
+
+        return end;
     }
 }
 
@@ -140,7 +148,7 @@ public class MapGenerator : NetworkBehaviour
 //        // Update is called once per frame
 //        void Update()
 //        {
-//       
+//
 //        }
 //
 //        Mesh generatePerlinHill(Mesh plane, int offX, int offZ)
