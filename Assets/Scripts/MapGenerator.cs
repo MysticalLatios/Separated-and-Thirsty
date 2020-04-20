@@ -6,8 +6,8 @@ using System;
 
 public class MapGenerator : NetworkBehaviour
 {
-    private Mesh plane;
     private MeshCollider myCollider;
+    private MeshFilter filter;
 
     [SyncVar(hook = nameof(genMap))]
     public Vector2 seeds;
@@ -18,7 +18,7 @@ public class MapGenerator : NetworkBehaviour
         Debug.Log("genmap running");
     }
 
-    public float maxHight,quality;
+    public float maxHight,quality,mapLength,mapWidth;
 
 
     void Awake()
@@ -28,7 +28,7 @@ public class MapGenerator : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.plane = this.GetComponent<MeshFilter>().mesh;
+        filter = this.GetComponent<MeshFilter>();
         Debug.Log("added plane");
         this.myCollider = GetComponent<MeshCollider>();
         Debug.Log("seed x : " + seeds.x + ",  y : " + seeds.y);
@@ -43,7 +43,6 @@ public class MapGenerator : NetworkBehaviour
 
     public void initColiders()
     {
-        this.plane = this.GetComponent<MeshFilter>().mesh;
         Debug.Log("added plane");
         this.myCollider = GetComponent<MeshCollider>();
     }
@@ -63,23 +62,23 @@ public class MapGenerator : NetworkBehaviour
 
     public void generatePerlinHill()
     {
-        Vector3[] vertices = plane.vertices;
-      
+        Vector3[] plane = filter.mesh.vertices;
 
-        for (int i = 0; i< vertices.Length; i++)
+        for (int i = 0; i< plane.Length; i++)
         {
-            float px = (transform.position.x + vertices[i].x) / quality;
-            float pz = (transform.position.z + vertices[i].z) / quality;
+            float px = (transform.position.x + plane[i].x) / quality;
+            float pz = (transform.position.z + plane[i].y) / quality;
 
-            vertices[i].y = Mathf.PerlinNoise(px + seeds.x, pz + seeds.y) * maxHight - maxHight / 2;
-            vertices[i].x *= 50;
-            vertices[i].z *= 50;
+            float perlinHeight = Mathf.PerlinNoise(px + seeds.x, pz + seeds.y) * maxHight - maxHight / 2;
+            Vector3 vec = new Vector3(plane[i].x * mapLength, plane[i].y * mapWidth, perlinHeight);
+            plane[i] = vec;
         }
 
-        plane.vertices = vertices;
-        plane.RecalculateBounds();
-        plane.RecalculateNormals();
-        myCollider.sharedMesh = plane;
+        filter.mesh.vertices = plane;
+        filter.mesh.RecalculateNormals();
+        filter.mesh.RecalculateBounds();
+        Debug.Log("Replacing mesh");
+        myCollider.sharedMesh = filter.mesh;
     }
 }
 
